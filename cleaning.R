@@ -15,7 +15,7 @@ spec_stp_wrds  <- readRDS("data/stp_wrds/spec_stp_wrds.RDS")
 
 stp_wrds <- tibble(words = unique(c(lsa_stp_wrds, tm_stp_wrds, spec_stp_wrds)))
 
-
+# loading german libretto
 txt <- readLines("data/ring_txt/rheingold.txt",encoding = "UTF-8")
 
 ####################################
