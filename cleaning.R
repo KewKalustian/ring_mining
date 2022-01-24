@@ -29,8 +29,6 @@ cycle_raw <- sapply(operas_path, read_lines)
 txt_cleaner <- function(x) {
 
  x %<>% 
- # replacing multiple spaces
- gsub("(?<=[\\s])\\s*|^\\s+|\\s+$", "", ., perl = T) %>% 
  # "\n" replacing line breaks with space
  gsub("\n", " ", .) %>%
  # connecting hyphenated words
