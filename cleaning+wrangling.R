@@ -78,3 +78,25 @@ cycle_complete_clean <- cycle_clean[5] %>%
   data.frame() %>% 
   mutate(opera = "tog_fin") %>% 
   full_join(cycle_complete_clean,.,by = c("words", "opera"))
+
+
+######################
+# loading sentiments #
+######################
+
+
+sentis <- read_lines(c("data/sentiws/pos_sentis.txt", 
+                       "data/sentiws/neg_sentis.txt")) %>%  
+                      lapply(function(x) {
+                         # separating words and values
+                         res <- strsplit(x , "\t", fixed = T)[[1]]
+                         # as data.frame
+                         return(data.frame(words = res[1], value = res[2],
+                                           stringsAsFactors = F))
+                       })
+
+# tidy up
+sentis %>% 
+  bind_rows() %>% 
+  mutate(words = tolower(gsub("\\|.*", "", words)), 
+         value = as.numeric(value)) 
