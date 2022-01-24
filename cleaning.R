@@ -51,16 +51,16 @@ cycle_clean <- sapply(cycle_raw, txt_cleaner)
 # joining words per opera
 
 cycle_complete_clean <- cycle_clean$`data/ring_txt/rheingold.txt.words` %>% 
-data.frame() %>% 
-rename(words = ".") %>% 
-mutate(opera = "rheingold")
+  data.frame() %>% 
+  rename(words = ".") %>% 
+  mutate(opera = "rheingold")
 
 
 cycle_complete_clean <- cycle_clean$`data/ring_txt/walküre.txt.words` %>% 
   data.frame() %>% 
   rename(words = ".") %>% 
   mutate(opera = "walküre") %>% 
- full_join(cycle_complete_clean, .,by = c("words", "opera"))
+  full_join(cycle_complete_clean, .,by = c("words", "opera"))
 
 
 cycle_complete_clean <- cycle_clean$`data/ring_txt/siegfried.txt.words` %>% 
