@@ -14,6 +14,7 @@ spec_stp_wrds  <- readRDS("data/stp_wrds/spec_stp_wrds.RDS")
 
 stp_wrds <- tibble(words = unique(c(lsa_stp_wrds, tm_stp_wrds, spec_stp_wrds)))
 
+# loading Wagner's Ring libretto
 
 operas <- c("rheingold", "walküre", "siegfried", "tog_without_ending", "tog_fin")
 
