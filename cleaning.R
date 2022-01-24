@@ -4,13 +4,6 @@ library(magrittr)
 library(lsa)
 library(tm)
 
-library(tidyverse)
-library(tidytext)
-library(magrittr)
-library(lsa)
-library(tm)
-
-
 # loading german standard (tm, lsa) and custom stopwords
 
 lsa_stp_wrds <- stopwords_de
