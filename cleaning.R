@@ -4,6 +4,12 @@ library(magrittr)
 library(lsa)
 library(tm)
 
+library(tidyverse)
+library(tidytext)
+library(magrittr)
+library(lsa)
+library(tm)
+
 
 # loading german standard (tm, lsa) and custom stopwords
 
@@ -15,8 +21,12 @@ spec_stp_wrds  <- readRDS("data/stp_wrds/spec_stp_wrds.RDS")
 
 stp_wrds <- tibble(words = unique(c(lsa_stp_wrds, tm_stp_wrds, spec_stp_wrds)))
 
-# loading german libretto (Rheingold)
-txt <- readLines("data/ring_txt/rheingold.txt",encoding = "UTF-8")
+
+operas <- c("rheingold", "walküre", "siegfried", "tog_without_ending", "tog_fin")
+
+operas_path <- paste0("data/ring_txt/", operas, ".txt")
+
+cycle_raw <- sapply(operas_path, read_lines)
 
 ####################################
 # cleaning text, string processing #
@@ -44,7 +54,4 @@ txt_cleaner <- function(x) {
  return(x)
 }   
 
-rheingold <- txt_cleaner(txt)
-
-
-# to be updated
+cycle_clean <- sapply(cycle_raw, txt_cleaner)
