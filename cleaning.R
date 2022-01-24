@@ -4,7 +4,6 @@ library(magrittr)
 library(lsa)
 library(tm)
 
-
 # loading german standard (tm, lsa) and custom stopwords
 
 lsa_stp_wrds <- stopwords_de
@@ -73,6 +72,7 @@ cycle_complete_clean <- cycle_clean[4] %>%
   data.frame() %>% 
   mutate(opera = "tog_without_ending") %>% 
   full_join(cycle_complete_clean,.,by = c("words", "opera"))
+
 
 cycle_complete_clean <- cycle_clean[5] %>% 
   data.frame() %>% 
