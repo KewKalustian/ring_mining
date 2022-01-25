@@ -100,3 +100,28 @@ sentis %<>%
   bind_rows() %>% 
   mutate(words = tolower(gsub("\\|.*", "", words)), 
          value = as.numeric(value)) 
+
+
+#######################################
+# extracting sentiments from libretto #
+#######################################
+
+cycle_sentis <- inner_join(cycle_complete_clean, sentis, by = "words")
+
+# rearranging columns | opera first.
+cycle_sentis <- cycle_sentis[,c(2,1,3)]
+
+# counting sentiments per opera
+senti_counts <- cycle_sentis %>% 
+                group_by(opera,words, value) %>% 
+                summarize(n =n()) 
+
+# counting total sentiments per opera
+ttl_sentis <- senti_counts %>% 
+              group_by(opera) %>% 
+              summarize(total = sum(n))
+
+# joining both dfs
+senti_counts_full <- left_join(senti_counts, ttl_sentis, by = "opera")
+
+
