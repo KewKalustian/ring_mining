@@ -106,6 +106,7 @@ sentis %<>%
 # extracting sentiments from libretto #
 #######################################
 
+
 cycle_sentis <- inner_join(cycle_complete_clean, sentis, by = "words")
 
 # rearranging columns | opera first.
