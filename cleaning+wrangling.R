@@ -102,11 +102,11 @@ sentis %<>%
          value = as.numeric(value)) 
 
 
-#######################################
-# extracting sentiments from libretto #
-#######################################
 
-# joining words that are sentis plus opera and value columns
+#################################################
+# extracting important sentiments from libretto #
+#################################################
+
 cycle_sentis <- inner_join(cycle_complete_clean, sentis, by = "words")
 
 # rearranging columns | opera first.
@@ -120,9 +120,12 @@ senti_counts <- cycle_sentis %>%
 # counting total sentiments per opera
 ttl_sentis <- senti_counts %>% 
               group_by(opera) %>% 
-              summarize(total = sum(n))
+              summarise(total = sum(n))
 
-# joining both dfs (senti counts plus total counts as column)
+# joining both dfs
 senti_counts_full <- left_join(senti_counts, ttl_sentis, by = "opera")
 
-
+# calculating senti importance using tf-idf
+imp_sentis <- senti_counts_full  %>% 
+  bind_tf_idf(words, opera, n) %>% 
+  arrange(desc(tf_idf)) 
