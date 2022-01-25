@@ -102,7 +102,6 @@ sentis %<>%
          value = as.numeric(value)) 
 
 
-
 #################################################
 # extracting important sentiments from libretto #
 #################################################
