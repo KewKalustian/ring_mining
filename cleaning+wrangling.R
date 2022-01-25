@@ -96,7 +96,7 @@ sentis <- read_lines(c("data/sentiws/pos_sentis.txt",
                        })
 
 # tidy up
-sentis %>% 
+sentis %<>% 
   bind_rows() %>% 
   mutate(words = tolower(gsub("\\|.*", "", words)), 
          value = as.numeric(value)) 
