@@ -106,7 +106,7 @@ sentis %<>%
 # extracting sentiments from libretto #
 #######################################
 
-
+# joining words that are sentis plus opera and value columns
 cycle_sentis <- inner_join(cycle_complete_clean, sentis, by = "words")
 
 # rearranging columns | opera first.
@@ -122,7 +122,7 @@ ttl_sentis <- senti_counts %>%
               group_by(opera) %>% 
               summarize(total = sum(n))
 
-# joining both dfs
+# joining both dfs (senti counts plus total counts as column)
 senti_counts_full <- left_join(senti_counts, ttl_sentis, by = "opera")
 
 
